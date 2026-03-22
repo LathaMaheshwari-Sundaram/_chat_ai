@@ -1,0 +1,8 @@
+.env
+chroma_store/
+__pycache__/
+*.db
+.gemini/
+.streamlit/
+venv/
+node_modules/

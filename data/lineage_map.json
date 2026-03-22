@@ -1,0 +1,102 @@
+[
+  {
+    "column": "revenue",
+    "source_system": "Billing_API",
+    "raw_table": "stg_billing",
+    "transformation_script": "etl_billing_to_revenue.py",
+    "destination_table": "monthly_revenue",
+    "schedule": "Daily at 2AM",
+    "business_rule": "Currency converted to USD and rounded to 2 decimals",
+    "owner_team": "Finance Data Team"
+  },
+  {
+    "column": "discount",
+    "source_system": "Promotions_API",
+    "raw_table": "stg_promos",
+    "transformation_script": "etl_promos.py",
+    "destination_table": "monthly_revenue",
+    "schedule": "Daily at 1AM",
+    "business_rule": "Null values replaced with 0",
+    "owner_team": "Marketing Operations"
+  },
+  {
+    "column": "net_revenue",
+    "source_system": "Calculation_Engine",
+    "raw_table": "stg_revenue_base",
+    "transformation_script": "calc_net_revenue.sql",
+    "destination_table": "monthly_revenue",
+    "schedule": "Daily at 3AM",
+    "business_rule": "revenue - discount_amount",
+    "owner_team": "Finance Data Team"
+  },
+  {
+    "column": "email",
+    "source_system": "Signup_Form",
+    "raw_table": "stg_users",
+    "transformation_script": "clean_user_data.py",
+    "destination_table": "user_profiles",
+    "schedule": "Hourly",
+    "business_rule": "Trim whitespace and convert to lowercase",
+    "owner_team": "Identity Management"
+  },
+  {
+    "column": "signup_date",
+    "source_system": "Signup_Form",
+    "raw_table": "stg_users",
+    "transformation_script": "format_dates.py",
+    "destination_table": "user_profiles",
+    "schedule": "Hourly",
+    "business_rule": "Converted to ISO 8601 format",
+    "owner_team": "Data Engineering"
+  },
+  {
+    "column": "price",
+    "source_system": "ERP_System",
+    "raw_table": "stg_erp_products",
+    "transformation_script": "sync_pricing.py",
+    "destination_table": "raw_sales",
+    "schedule": "Real-time",
+    "business_rule": "Fetch latest price from ERP API",
+    "owner_team": "Logistics Team"
+  },
+  {
+    "column": "order_id",
+    "source_system": "eCommerce_Platform",
+    "raw_table": "stg_web_orders",
+    "transformation_script": "order_ingestion.py",
+    "destination_table": "raw_sales",
+    "schedule": "Real-time",
+    "business_rule": "None",
+    "owner_team": "Web Sales Team"
+  },
+  {
+    "column": "quantity",
+    "source_system": "eCommerce_Platform",
+    "raw_table": "stg_web_orders",
+    "transformation_script": "order_ingestion.py",
+    "destination_table": "raw_sales",
+    "schedule": "Real-time",
+    "business_rule": "Ensure positive integer",
+    "owner_team": "Web Sales Team"
+  },
+  {
+    "column": "user_id",
+    "source_system": "Auth_Service",
+    "raw_table": "stg_auth_users",
+    "transformation_script": "user_sync.py",
+    "destination_table": "user_profiles",
+    "schedule": "Daily at 12AM",
+    "business_rule": "Unique constraint check",
+    "owner_team": "Security Team"
+  },
+  {
+    "column": "plan_type",
+    "source_system": "Billing_System",
+    "raw_table": "stg_billing_plans",
+    "transformation_script": "plan_sync.sql",
+    "destination_table": "user_profiles",
+    "schedule": "Daily at 4AM",
+    "business_rule": "Map plan ID to human-readable labels",
+    "owner_team": "Product Growth Team"
+  }
+]

@@ -1,0 +1,13 @@
+Data Governance and PII Policy
+
+1. PII data handling and masking rules: any column marked as PII (Personal Identifiable Information) such as email, phone number, or physical address must be masked when used in public or external reports. Masking should involve hashing or obfuscating all but the last four characters. Only authorized personnel from the Security and Identity Management teams can access raw PII data for auditing purposes.
+
+2. Data retention periods for each table type: sales and financial records (e.g., monthly_revenue, raw_sales) must be retained for 7 years to comply with tax and audit laws. User interaction logs and transient staging data should be archived after 12 months and deleted after 2 years. User profiles remain as long as the account is active, and for 3 years after account deletion request.
+
+3. Who is allowed to access which tables: access to 'monthly_revenue' is restricted to the Finance and Executive teams. 'user_profiles' access is limited to the CRM and Support teams. 'raw_sales' is accessible by Sales and Marketing Analysts. All data engineering staff have read-only access to all staging tables for debugging.
+
+4. Audit logging requirements: every query executed against a PII-flagged table must be logged in the centralized security log system. The log must capture the timestamp, the user ID of the requester, the columns accessed, and the reason for access. These logs are reviewed quarterly by the compliance officer.
+
+5. Data quality rules and acceptable null thresholds: total revenue columns should never have NULL values. If a NULL is detected, it must be replaced with 0.0 and flagged in the data_quality_log. For user_profiles, optional fields like 'country' can have a null threshold of up to 5%, but 'email' and 'user_id' must be 100% populated.
+
+6. Incident reporting procedure for data breaches: in the event of a suspected data breach or unauthorized access to PII data, the employee must report it to the Incident Response Team via the 'security-alert' channel within 30 minutes. The Data Protection Officer (DPO) will categorize the risk and notify relevant authorities if necessary.

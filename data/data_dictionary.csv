@@ -1,0 +1,16 @@
+table_name,column_name,data_type,description,owner,pii_flag,source_system,last_updated
+monthly_revenue,revenue,FLOAT,Total revenue generated,Finance Team,No,Billing_API,2024-01-15
+monthly_revenue,discount,FLOAT,Promotional discount applied,Marketing Team,No,Promotions_API,2024-01-15
+monthly_revenue,net_revenue,FLOAT,Revenue after discounts,Finance Team,No,Calculation_Engine,2024-01-15
+monthly_revenue,region,TEXT,Geographic region,Sales Team,No,CRM_System,2024-01-15
+monthly_revenue,month,TEXT,Financial month (YYYY-MM),Finance Team,No,System_Calendar,2024-01-15
+user_profiles,user_id,INTEGER,Unique user identifier,IDM Team,No,Auth_Service,2024-02-10
+user_profiles,email,TEXT,User email address,CRM Team,Yes,Signup_Form,2024-02-10
+user_profiles,signup_date,TEXT,Date of user signup,Growth Team,No,Signup_Form,2024-02-10
+user_profiles,country,TEXT,User country of residence,Sales Team,No,IP_Locator,2024-02-10
+user_profiles,plan_type,TEXT,Subscription plan level,Product Team,No,Billing_System,2024-02-10
+raw_sales,order_id,INTEGER,Unique order identifier,Sales Team,No,eCommerce_Platform,2024-03-01
+raw_sales,product_id,INTEGER,Product identifier,Inventory Team,No,ERP_System,2024-03-01
+raw_sales,quantity,INTEGER,Number of items sold,Sales Team,No,eCommerce_Platform,2024-03-01
+raw_sales,price,FLOAT,Unit price of the product,Pricing Team,No,ERP_System,2024-03-01
+raw_sales,sale_date,TEXT,Date of the transaction,Sales Team,No,eCommerce_Platform,2024-03-01
